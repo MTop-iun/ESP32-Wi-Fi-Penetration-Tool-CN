@@ -1,25 +1,24 @@
 # ESP32 Wi-Fi Penetration Tool
-## Frame Analyzer component
+## 帧分析器组件
 
-This component processes captured frames and parses them. 
-It provides parsing functionality to other components as well as frame filtering by searching for specific types of frames.
+该组件处理捕获的帧并对其进行解析。
+它为其他组件提供解析功能,并通过搜索特定类型的帧来进行帧过滤。
 
-### Filtering
-Filtering functionality is based on listening to event pool for SNIFFER_EVENTS events. Filtering can be started by calling `frame_analyzer_capture_start()` and
-providing it search criteria - currently just search type and BSSID.
+### 过滤
+过滤功能基于监听事件池中的SNIFFER_EVENTS事件。可以通过调用`frame_analyzer_capture_start()`并提供搜索条件(目前仅包括搜索类型和BSSID)来启动过滤。
 
-It then listens to SNIFFER_EVENTS events, parses captured frames and matches them with search criteria. If some frame matches criteria, it forward this frame (or part of it) to event pool as DATA_FRAME_EVENTS event base.
+然后它会监听SNIFFER_EVENTS事件,解析捕获的帧并将其与搜索条件匹配。如果某个帧符合条件,它会将这个帧(或其部分)作为DATA_FRAME_EVENTS事件基础转发到事件池。
 
-### Parsing
-Parsing functionality provides a way for other components to get required data from frame (or its parts). For example `parse_eapol_packet` will parse EAPOL packet from data frame if available.
+### 解析
+解析功能为其他组件提供了从帧(或其部分)中获取所需数据的方法。例如,`parse_eapol_packet`将从数据帧中解析EAPOL数据包(如果可用)。
 
-### Frame structures
-This component also provides a header file with structures based on 802.11 standard for parsing purposes.
+### 帧结构
+该组件还提供了一个基于802.11标准的头文件,其中包含用于解析目的的结构。
 
-## Usage
-If you want to use this package in your project, just pass captures frames from sniffer logic to event loop and start capture by `frame_analyzer_capture_start()`.
+## 使用方法
+如果你想在项目中使用这个包,只需将从嗅探器逻辑捕获的帧传递到事件循环中,并通过`frame_analyzer_capture_start()`启动捕获。
 
-Or use just parsing functionality of this component.
+或者仅使用该组件的解析功能。
 
-## Reference
-Doxygen API reference available
+## 参考
+提供Doxygen API参考文档
